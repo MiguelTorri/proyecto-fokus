@@ -13,8 +13,9 @@ const audioPausa = new Audio('./sonidos/pause.mp3');
 const audioTiempoFinalizado = new Audio('./sonidos/beep.mp3')
 const textoIniciarPausar = document.querySelector("#start-pause span")
 const imagenPlayPausa = document.querySelector(".app__card-primary-butto-icon")
+const tiempoEnPantalla = document.querySelector("#timer")
 
-let tiempoTrascurridoEnSegundos = 5
+let tiempoTrascurridoEnSegundos = 1500
 let idIntervalo = null
 
 musica.loop = true
@@ -85,8 +86,7 @@ const cuentaRegresiva = () => {
     textoIniciarPausar.textContent = "Pausar"
     imagenPlayPausa.setAttribute("src", "./imagenes/pause.png")
     tiempoTrascurridoEnSegundos -= 1
-    console.log("temporizador:" + tiempoTrascurridoEnSegundos)
-    /*console.log("ID: " + idIntervalo)*/
+    mostrarTiempo()
 }
 
 botonIniciarPausar.addEventListener("click" , iniciarPausar)
@@ -107,3 +107,10 @@ function reiniciar(){
     textoIniciarPausar.textContent = "Comenzar"
     imagenPlayPausa.setAttribute("src", "./imagenes/play_arrow.png")
 }
+
+function mostrarTiempo(){
+    const tiempo = tiempoTrascurridoEnSegundos
+    tiempoEnPantalla.innerHTML = `${tiempo}`
+}
+
+mostrarTiempo()
